@@ -14,8 +14,16 @@
     <script>
         async function some_api(myForm) {
             // ここにコードを書く
-            document.getElementById("result").innerHTML += myForm.form_data.value+"<br />";
-            document.apiform.reset();
+            // 課題5-1を再利用
+            const endpoint = "https://restcountries.com/v3.1/name/";
+
+            // 入力フォームから国名を取得
+            const country = myForm.form_data.value;
+            const url = `${endpoint}${country}`;
+
+            // APIにリクエストを送信
+            const response = await fetch(url);
+            const data = await response.json();
         }
     </script>
 </body>

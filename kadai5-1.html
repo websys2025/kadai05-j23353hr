@@ -22,8 +22,23 @@
             const response = await fetch(url); //リクエストを送り、レスポンスを代入。
             const data = await response.json(); //JSON 形式に変換して変数に格納
 
-            
-            document.getElementById("result").innerHTML =  myForm.zipcode.value; // 現状ではそのまま表示しているだけ
+            //判定
+            if (data.results) {
+		        //配列 (検索結果から最初の要素を取り出し)
+                const result = data.results[0];
+
+		        //address1: 都道府県、address2: 市区町村、address3: 町域を連結
+                const address = `${result.address1}${result.address2}${result.address3}`;
+
+
+                // HTMLに住所を表示
+                document.getElementById("result").innerHTML = `住所：${address}`;
+		        console.log("取得した住所:", address);
+            } else {
+                // 結果がない場合の表示
+                document.getElementById("result").innerHTML = "住所が見つかりませんでした。";  
+		        console.log("住所が見つかりませんでした。");  //コンソール表示
+            }
         }
     </script>
 </body>

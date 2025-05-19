@@ -24,6 +24,23 @@
             // APIにリクエストを送信
             const response = await fetch(url);
             const data = await response.json();
+
+            // 結果があるか判定
+            if (data[0]) {
+                const result = data[0];
+                const name = result.name.common;
+                const capital = result.capital ? result.capital[0] : "不明";
+                const population = result.population.toLocaleString();
+                const flag = result.flags.png;
+
+                // HTMLに国情報を表示
+                document.getElementById("result").innerHTML =
+                    `国名：${name}<br>首都：${capital}<br>人口：${population}人<br><img src="${flag}" alt="国旗" width="150">`;
+                console.log("取得した国情報:", name, capital, population);
+            } else {
+                document.getElementById("result").innerHTML = "国が見つかりませんでした。";
+                console.log("国が見つかりませんでした。");
+            }
         }
     </script>
 </body>

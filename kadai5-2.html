@@ -4,13 +4,13 @@
     <title>演習課題5-2：外部APIの呼び出しテスト</title>
 </head>
 <body>
-    <h1 id="msg">何かのAPI</h1>
+    <h1 id="msg">REST Countries APIを使ったテスト</h1>
     <form name="apiform"><p>
-        何かのフォーム：<input type="text" name="form_data">
+        国名（英語）：<input type="text" name="form_data">
         <button type="button" id="btn1" onclick="some_api(this.form)">実行</button>
     </p></form>
     
-    <div id="result"></div>
+    <div id="result">検索結果：</div>
     <script>
         async function some_api(myForm) {
             // ここにコードを書く
